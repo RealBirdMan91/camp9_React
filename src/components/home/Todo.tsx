@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useQuery } from "../../hook/useQuery";
 
 interface Todo {
   id: string;
@@ -7,31 +6,23 @@ interface Todo {
   completed: boolean;
 }
 
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
 function Todo() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState("");
-  const [todo, setTodo] = useState<Todo[]>([]);
+  const { isError, error, responseVal, isLoading } = useQuery<Todo[]>(
+    "https://jsonplaceholder.typicode.com/todos"
+  );
 
-  useEffect(() => {
-    setIsLoading(true);
-    async function getData() {
-      try {
-        const { data } = (await axios.get(
-          "https://jsonplaceholder.typicode.com/todos"
-        )) as { data: Todo[] };
-        console.log(data);
-        setTodo(data);
-      } catch (err) {
-        const error = err as string;
-        setIsError(true);
-        setError(error);
-      }
-    }
-
-    getData();
-    setIsLoading(false);
-  }, []);
+  const {
+    isError: isUserError,
+    error: userError,
+    responseVal: user,
+    isLoading: isUserLoading,
+  } = useQuery<User>("https://jsonplaceholder.typicode.com/user");
 
   if (isLoading) {
     return <h1>is Loading</h1>;
@@ -44,7 +35,7 @@ function Todo() {
 
   return (
     <div>
-      {todo.map((item) => (
+      {responseVal?.map((item) => (
         <h2>{item.title}</h2>
       ))}
     </div>

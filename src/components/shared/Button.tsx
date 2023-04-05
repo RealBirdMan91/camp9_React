@@ -1,12 +1,8 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 import { clsx } from "clsx";
 
-export interface ButtonProps
-  extends DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "primary" | "secondary";
 }
 
