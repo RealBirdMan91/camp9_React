@@ -5,7 +5,10 @@ import { useState } from "react";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    firstName: "Pablo", 
+    lastName: "Chandia",
+  });
 
   return (
     <div id="wrapper">
