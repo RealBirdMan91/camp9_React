@@ -11,7 +11,6 @@ export interface ButtonProps
 }
 
 function Button(props: ButtonProps) {
-  console.log(props);
   return (
     <div>
       <button
