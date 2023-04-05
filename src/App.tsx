@@ -4,6 +4,8 @@ import Counter from "./components/home/Counter";
 import Sidebar from "./components/shared/navigation/Sidebar";
 import { useState } from "react";
 import Button from "./components/shared/Button";
+import Blog from "./components/home/Blog";
+import Todo from "./components/home/Todo";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -32,6 +34,7 @@ function App() {
           Change Last Name
         </Button>
       </div>
+      <Todo />
     </div>
   );
 }
